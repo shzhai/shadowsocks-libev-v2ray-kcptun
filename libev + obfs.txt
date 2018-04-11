@@ -69,7 +69,7 @@ ssrenv.list
 
 # SERVER_ADDR=0.0.0.0
 SERVER_PORT=8888
-PASSWORD=lazY80Yorz!
+PASSWORD=MayGodBlessMe
 METHOD=aes-256-cfb
 PROTOCOL=auth_chain_a
 # PROTOCOLPARAM=32
@@ -97,7 +97,7 @@ ENV libsodium_url https://github.com/jedisct1/libsodium/releases/download/1.0.16
 0.16.tar.gz
 # ENV SERVER_ADDR     0.0.0.0
 ENV SERVER_PORT     8888
-ENV PASSWORD        @LDc@T1973
+ENV PASSWORD        MayGodBlessMe
 ENV METHOD          chacha20-ietf
 ENV PROTOCOL        auth_sha1_v4_compatible
 # ENV PROTOCOLPARAM   32
