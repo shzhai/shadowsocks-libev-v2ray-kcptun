@@ -47,17 +47,17 @@ RUN set -ex \
     && make install 
 
 ENV SERVER_ADDR=0.0.0.0 \
-SERVER_PORT=7777 \
+SERVER_PORT=2222 \
 LOCAL_PORT=1080 \
-PASSWORD=oldcatzzz \
+PASSWORD=examplepwd \
 METHOD=chacha20-ietf-poly1305 \
 TIMEOUT=60 \
 FASTOPEN=--fast-open \
 UDP_RELAY=-u \
 OBFS='/usr/local/bin/obfs-server --obfs http' \
 ARGS='' \
-KCP_LISTEN=6666 \
-KCP_PASS=oldcatzzz \
+KCP_LISTEN=3333 \
+KCP_PASS=examplepwd \
 KCP_ENCRYPT=salsa20 \
 KCP_MODE=fast2 \
 KCP_MTU=1400 \
