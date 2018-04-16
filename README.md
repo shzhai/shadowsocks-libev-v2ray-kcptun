@@ -46,12 +46,12 @@ Download this environment config file from https://raw.githubusercontent.com/shz
 | KCP_DSCP | 46 | | ✅ |
 | KCP_NOCOMP | false | | ✅ |
 
-# Reference of KCPTun introduction and Tunning 
+## Reference of KCPTun introduction and Tunning 
 * https://blog.kuoruan.com/102.html
 
-# Chagnelog
+## Chagnelog
 * 2018-4-14 Initialize this repository from github automation build.
 * 2018-4-16 Correct ss-kcp.config and rebuild image.
 
-# Contact
+## Contact
 <Shawn.zhai@gmail.com>
