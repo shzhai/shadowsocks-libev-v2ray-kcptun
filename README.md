@@ -2,6 +2,7 @@
 Build integrated-shadowsocks-libev-obfs-plugin-with-kcptun on ubuntu 16.04 based on https://github.com/shadowsocks/shadowsocks-libev/releases/ and https://github.com/xtaci/kcptun/releases
 
 [![](https://images.microbadger.com/badges/image/shzhai/shadowsocks-libev-obfs-kcptun.svg)](https://microbadger.com/images/shzhai/shadowsocks-libev-obfs-kcptun "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/shzhai/shadowsocks-libev-obfs-kcptun.svg)](https://microbadger.com/images/shzhai/shadowsocks-libev-obfs-kcptun "Get your own version badge on microbadger.com")
+
 ## support version 
   - Ubuntu 16.04
   - Shadowsocks-libev version 3.1.3
@@ -22,6 +23,7 @@ docker run -d -p 2222:2222 -p 2222:2222/udp -p 3333:3333/udp --restart always --
 Download this environment config file from https://raw.githubusercontent.com/shzhai/shadowsocks-libev-obfs-kcptun/master/ss-kcp.config and change the settings according to your need.  
 
 ## Configurable Parameters for kcp-tun.config
+
 ### Shadowsocks
 | Parameter | Default value | Common setting | Recommend Change |
 | ------ | ------ |------ |------ |
@@ -51,7 +53,7 @@ Download this environment config file from https://raw.githubusercontent.com/shz
 
 ## Chagnelog
 * 2018-4-14 Initialize this repository from github automation build.
-* 2018-4-16 Correct ss-kcp.config and rebuild image.
+* 2018-4-16 Correct ss-kcp.config and update ReadMe.
 
-## Contact
+## Feedback & Thanks :)
 <Shawn.zhai@gmail.com>
