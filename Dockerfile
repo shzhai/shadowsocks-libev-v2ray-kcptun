@@ -54,7 +54,7 @@ METHOD=chacha20-ietf-poly1305 \
 TIMEOUT=60 \
 FASTOPEN=--fast-open \
 UDP_RELAY=-u \
-OBFS='/usr/local/bin/obfs-server --obfs http' \
+OBFS_OPTS=http \
 ARGS='' \
 KCP_LISTEN=3333 \
 KCP_PASS=examplepwd \
@@ -78,7 +78,7 @@ CMD ss-server -s ${SERVER_ADDR} \
               -t ${TIMEOUT} \
               ${FASTOPEN} \
               ${UDP_RELAY} \
-              --plugin "${OBFS}" \
+              --plugin "/usr/local/bin/obfs-server --obfs ${OBFS_OPTS}" \
               ${ARGS} \
               -f /var/run/shadowsocks-libev.pid \
               && kcpserver -l ":${KCP_LISTEN}" \
