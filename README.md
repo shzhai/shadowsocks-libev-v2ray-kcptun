@@ -1,33 +1,33 @@
-# shadowsocks-libev-obfs-kcptun
+## shadowsocks-libev-obfs-kcptun
 
 Build integrated-shadowsocks-libev-obfs-plugin-with-kcptun on ubuntu 16.04 based on https://github.com/shadowsocks/shadowsocks-libev/releases/ and https://github.com/xtaci/kcptun/releases
 
 [![](https://images.microbadger.com/badges/image/shzhai/shadowsocks-libev-obfs-kcptun.svg)](https://microbadger.com/images/shzhai/shadowsocks-libev-obfs-kcptun "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/shzhai/shadowsocks-libev-obfs-kcptun.svg)](https://microbadger.com/images/shzhai/shadowsocks-libev-obfs-kcptun "Get your own version badge on microbadger.com")
 
-## support version
+### support version
 
 - Ubuntu 16.04
 - Shadowsocks-libev version 3.1.3
 - Kcptun version 20180316
 
-## How to use this repo
+### How to use this repo
 
 ```sh
 docker run -d -p 2222:2222 -p 2222:2222/udp -p 3333:3333/udp --restart always --env-file ss-kcp.config shzhai/shadowsocks-libev-obfs-kcptun
 ```
 
-> The first and second -p parameter will use to map shadowsockcs tcp/udp port 
-> 2222 to external, and the third -p parameter will use to map kcptun udp port 
-> 3333 to external, we will use an environment file ss-kcp.config to config 
-> shadowsocks and kcptun parameters include the ports above. 
+> The first and second -p parameter will use to map shadowsockcs tcp/udp port
+> 2222 to external, and the third -p parameter will use to map kcptun udp port
+> 3333 to external, we will use an environment file ss-kcp.config to config
+> shadowsocks and kcptun parameters include the ports above.
 > For detail of the configurable parameters will list down below.
 > You can also use -e to override the settings but that won't be necessary.
 
 *Download this environment config file from https://raw.githubusercontent.com/shzhai/shadowsocks-libev-obfs-kcptun/master/ss-kcp.config and change the settings according to your need.*
 
-## Configurable Parameters for kcp-tun.config
+### Configurable Parameters for ss-kcp.config
 
-### Shadowsocks
+#### Shadowsocks
 
 | Parameter | Default value | Common setting | May Modify |
 | ------ | ------ |------ |------ |
@@ -41,13 +41,13 @@ docker run -d -p 2222:2222 -p 2222:2222/udp -p 3333:3333/udp --restart always --
 | FASTOPEN | --fast-open | | |
 | UDP_RELAY | -u | |✅| 
 
-### SIMPLE-OBFS
+#### SIMPLE-OBFS
 
 | Parameter | Default value | Common setting | May modify  |
 | ------ | ------ |------ |------ |
 | OBFS_OPTS | http | http, tls | ✅ |
 
-### KCPTUN
+#### KCPTUN
 
 | Parameter | Default value | Common setting | May modify  |
 | ------ | ------ |------ |------ |
@@ -61,15 +61,16 @@ docker run -d -p 2222:2222 -p 2222:2222/udp -p 3333:3333/udp --restart always --
 | KCP_DSCP | 46 | | ✅ |
 | KCP_NOCOMP | false | | ✅ |
 
-## KCPTun tunning Reference Blog
+### KCPTun tunning Reference Blog
 
 - https://blog.kuoruan.com/102.html
 
-## Change log
+### Change log
 
 - 2018-4-14 Initialize this repository from github automation build.
 - 2018-4-16 Correct ss-kcp.config and update ReadMe.
+- 2018-4-17 Enable Simple-OBFS configuration.
 
-## Feedback & Thanks :)
+### Feedback & Thanks :)
 
-- <Shawn.zhai@gmail.com>*
+- <Shawn.zhai@gmail.com>
