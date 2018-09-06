@@ -32,14 +32,13 @@ KCP_ARGS=''
 ARG TempDir=SS_KCPTUN
 
 RUN set -ex \
+    && mkdir -p /tmp/${TempDir} \
+    && cd /tmp/${TempDir} \
     && apt-get -y update \
     && apt-get -y upgrade \
     && apt-get -y install --no-install-recommends gettext build-essential autoconf automake \
     libtool openssl xmlto libssl-dev zlib1g-dev libpcre3-dev libev-dev libc-ares-dev \
     libsodium-dev libmbedtls-dev git rng-tools wget ca-certificates asciidoc \
-    && mkdir -p /tmp/${TempDir} \
-    && cd /tmp/${TempDir} \
-    && set -ex \
     && wget --no-check-certificate -O shadowsocks-libev-${SS_VERSION}.tar.gz ${SS_URL} \
     && wget --no-check-certificate -O kcptun-linux-amd64-${KCP_VERSION}.tar.gz ${KCP_URL} \
     && tar zxf shadowsocks-libev-${SS_VERSION}.tar.gz \
@@ -49,10 +48,8 @@ RUN set -ex \
     && ./configure --disable-documentation \
     && make \
     && make install \
-    && set -ex \
     && mv server_linux_amd64 /usr/local/bin/kcpserver \
     && mv client_linux_amd64 /usr/local/bin/kcpclient \
-    && set -ex \
     && cd simple-obfs \
     && git submodule update --init --recursive \
     && ./autogen.sh \
