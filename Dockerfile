@@ -72,7 +72,7 @@ CMD ss-server -s ${SERVER_ADDR} \
               ${FASTOPEN} \
               ${UDP_RELAY} \
               --plugin ${PLUGIN} \
-              --plugin_opts ${PLUGIN_OPTS} \
+              --plugin-opts ${PLUGIN_OPTS} \
               ${ARGS} \
               -f /var/run/shadowsocks-libev.pid \
               && kcpserver -l ":${KCP_LISTEN}" \
