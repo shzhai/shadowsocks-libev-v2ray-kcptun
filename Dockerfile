@@ -18,7 +18,7 @@ TIMEOUT=60 \
 FASTOPEN=--fast-open \
 UDP_RELAY=-u \
 PLUGIN=obfs-server \
-PLUGIN_OPTS='obfs=http' \
+PLUGIN_OPTS=obfs=http \
 ARGS='' \
 KCP_LISTEN=3333 \
 KCP_PASS=examplepwd \
