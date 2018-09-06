@@ -3,8 +3,9 @@ FROM ubuntu:16.04
 LABEL maintainer="Shawnzhai <shawn.zhai@gmail.com>"
 
 ENV SS_VERSION=3.2.0 \
-SS_URL=https://github.com/shadowsocks/shadowsocks-libev/releases/download/v${SS_VERSION}/shadowsocks-libev-${SS_VERSION}.tar.gz \
-KCP_VERSION=20180810 \
+KCP_VERSION=20180810
+
+ENV SS_URL=https://github.com/shadowsocks/shadowsocks-libev/releases/download/v${SS_VERSION}/shadowsocks-libev-${SS_VERSION}.tar.gz \
 KCP_URL=https://github.com/xtaci/kcptun/releases/download/v${KCP_VERSION}/kcptun-linux-amd64-${KCP_VERSION}.tar.gz \
 OBFS_URL=https://github.com/shadowsocks/simple-obfs.git
 
@@ -48,6 +49,7 @@ RUN set -ex \
     && ./configure --disable-documentation \
     && make \
     && make install \
+    && cd /tmp/${TempDir} \
     && mv server_linux_amd64 /usr/local/bin/kcpserver \
     && mv client_linux_amd64 /usr/local/bin/kcpclient \
     && cd simple-obfs \
