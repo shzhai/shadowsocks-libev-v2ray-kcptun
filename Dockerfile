@@ -2,49 +2,11 @@
 FROM ubuntu:16.04
 LABEL maintainer="Shawnzhai <shawn.zhai@gmail.com>"
 
-ENV SS_VERSION=3.1.3
-ENV SS_URL=https://github.com/shadowsocks/shadowsocks-libev/releases/download/v${SS_VERSION}/shadowsocks-libev-${SS_VERSION}.tar.gz
-
-ENV KCP_VERSION=20180316
-ENV KCP_URL=https://github.com/xtaci/kcptun/releases/download/v${KCP_VERSION}/kcptun-linux-amd64-${KCP_VERSION}.tar.gz
-
-ENV OBFS_URL https://github.com/shadowsocks/simple-obfs.git
-
-ARG WorkDir=SS_KCPTUN
-ENV WorkDir=${WorkDir}
-
-RUN set -ex \
-    && apt-get -y update \
-    && apt-get -y upgrade \
-    && apt-get -y install --no-install-recommends gettext build-essential autoconf automake \
-    libtool openssl xmlto libssl-dev zlib1g-dev libpcre3-dev libev-dev libc-ares-dev \
-    libsodium-dev libmbedtls-dev git rng-tools wget ca-certificates asciidoc \
-    && mkdir -p /tmp/${WorkDir} 
-
-WORKDIR /tmp/${WorkDir}
-
-RUN set -ex \
-    && wget --no-check-certificate -O shadowsocks-libev-${SS_VERSION}.tar.gz ${SS_URL} \
-    && wget --no-check-certificate -O kcptun-linux-amd64-${KCP_VERSION}.tar.gz ${KCP_URL} \
-    && tar zxf shadowsocks-libev-${SS_VERSION}.tar.gz \
-    && tar zxf kcptun-linux-amd64-${KCP_VERSION}.tar.gz \
-    && git clone ${OBFS_URL} \
-    && cd shadowsocks-libev-${SS_VERSION} \
-    && ./configure --disable-documentation \
-    && make \
-    && make install
-
-RUN set -ex \
-    && mv server_linux_amd64 /usr/local/bin/kcpserver \
-    && mv client_linux_amd64 /usr/local/bin/kcpclient
-
-RUN set -ex \
-    && cd simple-obfs \
-    && git submodule update --init --recursive \
-    && ./autogen.sh \
-    && ./configure \
-    && make \
-    && make install 
+ENV SS_VERSION=3.2.0 \
+SS_URL=https://github.com/shadowsocks/shadowsocks-libev/releases/download/v${SS_VERSION}/shadowsocks-libev-${SS_VERSION}.tar.gz \
+KCP_VERSION=20180810 \
+KCP_URL=https://github.com/xtaci/kcptun/releases/download/v${KCP_VERSION}/kcptun-linux-amd64-${KCP_VERSION}.tar.gz \
+OBFS_URL=https://github.com/shadowsocks/simple-obfs.git
 
 ENV SERVER_ADDR=0.0.0.0 \
 SERVER_PORT=2222 \
@@ -60,15 +22,46 @@ KCP_LISTEN=3333 \
 KCP_PASS=examplepwd \
 KCP_ENCRYPT=salsa20 \
 KCP_MODE=fast2 \
-KCP_MTU=1400 \
+KCP_MTU=1350 \
 KCP_SNDWND=2048 \
 KCP_RCVWND=2048 \
 KCP_DSCP=46 \
 KCP_NOCOMP=false \
 KCP_ARGS=''
 
+ARG TempDir=SS_KCPTUN
+
+RUN set -ex \
+    && apt-get -y update \
+    && apt-get -y upgrade \
+    && apt-get -y install --no-install-recommends gettext build-essential autoconf automake \
+    libtool openssl xmlto libssl-dev zlib1g-dev libpcre3-dev libev-dev libc-ares-dev \
+    libsodium-dev libmbedtls-dev git rng-tools wget ca-certificates asciidoc \
+    && mkdir -p /tmp/${TempDir} \
+    && cd /tmp/${TempDir} \
+    && set -ex \
+    && wget --no-check-certificate -O shadowsocks-libev-${SS_VERSION}.tar.gz ${SS_URL} \
+    && wget --no-check-certificate -O kcptun-linux-amd64-${KCP_VERSION}.tar.gz ${KCP_URL} \
+    && tar zxf shadowsocks-libev-${SS_VERSION}.tar.gz \
+    && tar zxf kcptun-linux-amd64-${KCP_VERSION}.tar.gz \
+    && git clone ${OBFS_URL} \
+    && cd shadowsocks-libev-${SS_VERSION} \
+    && ./configure --disable-documentation \
+    && make \
+    && make install \
+    && set -ex \
+    && mv server_linux_amd64 /usr/local/bin/kcpserver \
+    && mv client_linux_amd64 /usr/local/bin/kcpclient \
+    && set -ex \
+    && cd simple-obfs \
+    && git submodule update --init --recursive \
+    && ./autogen.sh \
+    && ./configure \
+    && make \
+    && make install 
+
 WORKDIR /usr/local/bin
-RUN rm -rf /tmp/${WorkDir}
+RUN rm -rf /tmp/${TempDir}
 
 CMD ss-server -s ${SERVER_ADDR} \
               -p ${SERVER_PORT} \
