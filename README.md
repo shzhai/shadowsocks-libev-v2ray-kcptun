@@ -45,7 +45,7 @@ docker run -d -p 2222:2222 -p 2222:2222/udp -p 3333:3333/udp --restart always --
 
 | Parameter | Default value | Common setting | May modify  |
 | ------ | ------ |------ |------ |
-| OBFS_OPTS | http | http, tls | ✅ |
+| OBFS_OPTS | obfs=http | obfs=http, obfs=tls | ✅ |
 
 #### KCPTUN
 
