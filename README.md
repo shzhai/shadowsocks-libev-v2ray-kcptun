@@ -7,8 +7,8 @@ Build integrated-shadowsocks-libev-obfs-plugin-with-kcptun on ubuntu 16.04 based
 ### support version
 
 - Ubuntu 16.04
-- Shadowsocks-libev version 3.2.0
-- Kcptun version 20180810
+- Shadowsocks-libev version 3.2.1
+- Kcptun version 20181114
 
 ### How to use this repo
 
