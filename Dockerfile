@@ -2,8 +2,8 @@
 FROM ubuntu:16.04
 LABEL maintainer="Shawnzhai <shawn.zhai@gmail.com>"
 
-ENV SS_VERSION=3.2.0 \
-KCP_VERSION=20180810
+ENV SS_VERSION=3.3.1 \
+KCP_VERSION=20190905
 
 ENV SS_URL=https://github.com/shadowsocks/shadowsocks-libev/releases/download/v${SS_VERSION}/shadowsocks-libev-${SS_VERSION}.tar.gz \
 KCP_URL=https://github.com/xtaci/kcptun/releases/download/v${KCP_VERSION}/kcptun-linux-amd64-${KCP_VERSION}.tar.gz \

@@ -7,8 +7,8 @@ Build integrated-shadowsocks-libev-obfs-plugin-with-kcptun on ubuntu 16.04 based
 ### support version
 
 - Ubuntu 16.04
-- Shadowsocks-libev version 3.2.0
-- Kcptun version 20180810
+- Shadowsocks-libev version 3.3.1
+- Kcptun version 20180905
 
 ### How to use this repo
 
@@ -39,7 +39,7 @@ docker run -d -p 2222:2222 -p 2222:2222/udp -p 3333:3333/udp --restart always --
 | METHOD | chacha20-ietf-poly1305 |rc4-md5,aes-256-cfb,chacha20-ietf,chacha20-ietf-poly1305 | ✅ |
 | TIMEOUT | 60 | | ✅ |
 | FASTOPEN | --fast-open | | |
-| UDP_RELAY | -u | |✅| 
+| UDP_RELAY | -u | | ✅ |
 
 #### SIMPLE-OBFS
 
@@ -71,6 +71,7 @@ docker run -d -p 2222:2222 -p 2222:2222/udp -p 3333:3333/udp --restart always --
 - 2018-4-16 Correct ss-kcp.config and update ReadMe.
 - 2018-4-17 Enable Simple-OBFS configuration.
 - 2018-9-6 Reduce layers to shrink size of this image and update to ss-server 3.2.0 and kcptun 20180810.
+- 2019-9-6 Update to ss-server 3.3.1 and kcptun 20190906.
 
 ### Feedback & Thanks :)
 
