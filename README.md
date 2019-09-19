@@ -1,8 +1,8 @@
-## shadowsocks-libev-obfs-kcptun
+## shadowsocks-libev-v2ray-kcptun
 
-Build integrated-shadowsocks-libev-v2ray-plugin-with-kcptun on ubuntu 18.04 based on https://github.com/shadowsocks/shadowsocks-libev/releases/ and https://github.com/xtaci/kcptun/releases
+Build integrated shadowsocks-libev-v2ray-plugin-with-kcptun on ubuntu 18.04 based on https://github.com/shadowsocks/shadowsocks-libev/releases/ and https://github.com/xtaci/kcptun/releases
 
-[![](https://images.microbadger.com/badges/image/shzhai/shadowsocks-libev-obfs-kcptun.svg)](https://microbadger.com/images/shzhai/shadowsocks-libev-obfs-kcptun "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/shzhai/shadowsocks-libev-obfs-kcptun.svg)](https://microbadger.com/images/shzhai/shadowsocks-libev-obfs-kcptun "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/shzhai/shadowsocks-libev-v2ray-kcptun.svg)](https://microbadger.com/images/shzhai/shadowsocks-libev-v2ray-kcptun "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/shzhai/shadowsocks-libev-v2ray-kcptun.svg)](https://microbadger.com/images/shzhai/shadowsocks-libev-v2ray-kcptun "Get your own version badge on microbadger.com")
 
 ### support version
 
@@ -23,7 +23,7 @@ docker run -d -p 2222:2222 -p 2222:2222/udp -p 3333:3333/udp --restart always --
 > For detail of the configurable parameters will list down below.
 > You can also use -e to override the settings but that won't be necessary.
 
-*Download this environment config file from https://raw.githubusercontent.com/shzhai/shadowsocks-libev-obfs-kcptun/master/ss-kcp.config and change the settings according to your need.*
+*Download this environment config file from https://raw.githubusercontent.com/shzhai/shadowsocks-libev-v2ray-kcptun/master/ss-kcp.config and change the settings according to your need.*
 
 ### Configurable Parameters for ss-kcp.config
 
@@ -45,7 +45,7 @@ docker run -d -p 2222:2222 -p 2222:2222/udp -p 3333:3333/udp --restart always --
 
 | Parameter | Default value | Common setting | May modify  |
 | ------ | ------ |------ |------ |
-| OBFS_OPTS | v2ray-plugin | PLUGIN_OPTS=server, server;tls;host=yourdomain.com;path=/v2ray;cert=/root/.acme.sh/yourdomain.com/yourdomain.com.cer;key=/root/.acme.sh/yourdomain.com/yourdomain.com.key -u restart: always  | ✅ |
+| PLUGIN | v2ray-plugin | PLUGIN_OPTS=server, server;tls;host=yourdomain.com;path=/v2ray;cert=/root/.acme.sh/yourdomain.com/yourdomain.com.cer;key=/root/.acme.sh/yourdomain.com/yourdomain.com.key -u restart: always  | ✅ |
 
 #### KCPTUN
 
