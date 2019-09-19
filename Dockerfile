@@ -1,13 +1,15 @@
 
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 LABEL maintainer="Shawnzhai <shawn.zhai@gmail.com>"
 
 ENV SS_VERSION=3.3.1 \
-KCP_VERSION=20190905
+KCP_VERSION=20190905 \
+GO_VERSION=1.13 
 
 ENV SS_URL=https://github.com/shadowsocks/shadowsocks-libev/releases/download/v${SS_VERSION}/shadowsocks-libev-${SS_VERSION}.tar.gz \
 KCP_URL=https://github.com/xtaci/kcptun/releases/download/v${KCP_VERSION}/kcptun-linux-amd64-${KCP_VERSION}.tar.gz \
-OBFS_URL=https://github.com/shadowsocks/simple-obfs.git
+GO_URL=https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz \
+V2RAY_URL=https://github.com/shadowsocks/v2ray-plugin.git
 
 ENV SERVER_ADDR=0.0.0.0 \
 SERVER_PORT=2222 \
@@ -17,8 +19,8 @@ METHOD=chacha20-ietf-poly1305 \
 TIMEOUT=60 \
 FASTOPEN=--fast-open \
 UDP_RELAY=-u \
-PLUGIN=obfs-server \
-PLUGIN_OPTS=obfs=http \
+PLUGIN=v2ray-plugin \
+PLUGIN_OPTS=server \
 ARGS='' \
 KCP_LISTEN=3333 \
 KCP_PASS=examplepwd \
@@ -43,9 +45,11 @@ RUN set -ex \
     libsodium-dev libmbedtls-dev git rng-tools wget ca-certificates asciidoc \
     && wget --no-check-certificate -O shadowsocks-libev-${SS_VERSION}.tar.gz ${SS_URL} \
     && wget --no-check-certificate -O kcptun-linux-amd64-${KCP_VERSION}.tar.gz ${KCP_URL} \
+    && wget --no-check-certificate -O go${GO_VERSION}.linux-amd64.tar.gz ${GO_URL} \
     && tar zxf shadowsocks-libev-${SS_VERSION}.tar.gz \
     && tar zxf kcptun-linux-amd64-${KCP_VERSION}.tar.gz \
-    && git clone ${OBFS_URL} \
+    && tar zxf go${GO_VERSION}.linux-amd64.tar.gz \
+    && git clone ${V2RAY_URL} \
     && cd shadowsocks-libev-${SS_VERSION} \
     && ./configure --disable-documentation \
     && make \
@@ -53,12 +57,12 @@ RUN set -ex \
     && cd /tmp/${TempDir} \
     && mv server_linux_amd64 /usr/local/bin/kcpserver \
     && mv client_linux_amd64 /usr/local/bin/kcpclient \
-    && cd simple-obfs \
-    && git submodule update --init --recursive \
-    && ./autogen.sh \
-    && ./configure \
-    && make \
-    && make install 
+    && mv go /usr/local \
+    && cd v2ray-plugin \
+    && export GOROOT=/usr/local/go \
+    && export PATH=$GOPATH/bin:$GOROOT/bin:$PATH \
+    && go build \
+    && mv v2ray-plugin /usr/local/bin
 
 WORKDIR /usr/local/bin
 RUN rm -rf /tmp/${TempDir}

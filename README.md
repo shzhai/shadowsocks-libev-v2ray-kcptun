@@ -1,19 +1,19 @@
 ## shadowsocks-libev-obfs-kcptun
 
-Build integrated-shadowsocks-libev-obfs-plugin-with-kcptun on ubuntu 16.04 based on https://github.com/shadowsocks/shadowsocks-libev/releases/ and https://github.com/xtaci/kcptun/releases
+Build integrated-shadowsocks-libev-v2ray-plugin-with-kcptun on ubuntu 18.04 based on https://github.com/shadowsocks/shadowsocks-libev/releases/ and https://github.com/xtaci/kcptun/releases
 
 [![](https://images.microbadger.com/badges/image/shzhai/shadowsocks-libev-obfs-kcptun.svg)](https://microbadger.com/images/shzhai/shadowsocks-libev-obfs-kcptun "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/shzhai/shadowsocks-libev-obfs-kcptun.svg)](https://microbadger.com/images/shzhai/shadowsocks-libev-obfs-kcptun "Get your own version badge on microbadger.com")
 
 ### support version
 
-- Ubuntu 16.04
+- Ubuntu 18.04
 - Shadowsocks-libev version 3.3.1
 - Kcptun version 20180905
 
 ### How to use this repo
 
 ```sh
-docker run -d -p 2222:2222 -p 2222:2222/udp -p 3333:3333/udp --restart always --env-file ss-kcp.config shzhai/shadowsocks-libev-obfs-kcptun
+docker run -d -p 2222:2222 -p 2222:2222/udp -p 3333:3333/udp --restart always --env-file ss-kcp.config shzhai/shadowsocks-libev-v2ray-kcptun
 ```
 
 > The first and second -p parameter will use to map shadowsockcs tcp/udp port
@@ -41,11 +41,11 @@ docker run -d -p 2222:2222 -p 2222:2222/udp -p 3333:3333/udp --restart always --
 | FASTOPEN | --fast-open | | |
 | UDP_RELAY | -u | | ✅ |
 
-#### SIMPLE-OBFS
+#### V2Ray
 
 | Parameter | Default value | Common setting | May modify  |
 | ------ | ------ |------ |------ |
-| OBFS_OPTS | obfs=http | obfs=http, obfs=tls | ✅ |
+| OBFS_OPTS | v2ray-plugin | PLUGIN_OPTS=server, server;tls;host=yourdomain.com;path=/v2ray;cert=/root/.acme.sh/yourdomain.com/yourdomain.com.cer;key=/root/.acme.sh/yourdomain.com/yourdomain.com.key -u restart: always  | ✅ |
 
 #### KCPTUN
 
@@ -72,6 +72,7 @@ docker run -d -p 2222:2222 -p 2222:2222/udp -p 3333:3333/udp --restart always --
 - 2018-4-17 Enable Simple-OBFS configuration.
 - 2018-9-6 Reduce layers to shrink size of this image and update to ss-server 3.2.0 and kcptun 20180810.
 - 2019-9-6 Update to ss-server 3.3.1 and kcptun 20190906.
+- 2019-9-19 Replace simple-obfs to v2ray plugin as simple-obfs project is obsoleted.
 
 ### Feedback & Thanks :)
 
